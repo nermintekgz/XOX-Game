@@ -7,9 +7,9 @@ class Tablo:
             print('|'.join(dikey))
             print('-' * 5)
 
-    def hamle_yapma(self, dikey, yatay, oyuncu):
-        if self.tablo[dikey][yatay] == ' ':
-            self.tablo[dikey][yatay] = oyuncu
+    def hamle_yapma(self, yatay, dikey, oyuncu):
+        if self.tablo[yatay][dikey] == ' ':
+            self.tablo[yatay][dikey] = oyuncu
             return True
         else:
             print('Bu alan dolu. Lütfen boş bir bölme seçiniz.')
@@ -45,10 +45,10 @@ class Oyun(Tablo):
     def oyuncu_hamlesi(self):
         while True:
             self.tablonun_detaylari()
-            dikey = int(input(f'{self.aktif_oyuncu} Dikey için hamle seçiniz. (0, 1, 2): '))
             yatay = int(input(f'{self.aktif_oyuncu} Yatay için hamle seçiniz. (0, 1, 2): '))
+            dikey = int(input(f'{self.aktif_oyuncu} Dikey için hamle seçiniz. (0, 1, 2): '))
 
-            if self.hamle_yapma(dikey, yatay, self.aktif_oyuncu):
+            if self.hamle_yapma(yatay, dikey, self.aktif_oyuncu):
                 if self.kazanma_durumu(self.aktif_oyuncu):
                     self.tablonun_detaylari()
                     if self.aktif_oyuncu == "X":
